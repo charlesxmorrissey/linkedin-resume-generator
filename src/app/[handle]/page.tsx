@@ -1,6 +1,5 @@
-import Link from 'next/link'
-
 import { Resume } from 'components/Resume'
+import { SearchAgain } from 'components/SearchAgain'
 import { fetchLinkedInUser } from 'utils'
 
 export default async function Page({ params }: { params: { handle: string } }) {
@@ -9,13 +8,13 @@ export default async function Page({ params }: { params: { handle: string } }) {
 
   if (data?.error) {
     return (
-      <>
-        <p>{data?.error ?? "This profile can't be accessed"}</p>
+      <div className='flex flex-col w-full'>
+        <SearchAgain />
 
-        <Link className='text-blue-600' href='/'>
-          Search Again
-        </Link>
-      </>
+        <div className='flex flex-col items-center justify-center flex-1'>
+          <p>{data?.error ?? "This profile can't be accessed"}</p>
+        </div>
+      </div>
     )
   }
 

@@ -28,27 +28,35 @@ export const SearchForm = () => {
   }
 
   return (
-    <form
-      className='flex w-full max-w-prose justify-center'
-      onSubmit={handleOnSubmit}
-    >
-      <div className='flex px-4 w-full border shadow rounded-full dark:text-gray-800 dark:border-gray-700 dark:bg-gray-200 focus:ring-blue-500 focus:border-blue-500'>
-        <input
-          className='outline-none w-full bg-transparent dark:text-gray-600 text-sm  h-12'
-          onChange={handleOnChange}
-          placeholder='Search LinkedIn by profile name'
-          type='text'
-          value={inputValue}
-        />
+    <div className='flex flex-col items-center justify-center flex-1 relative'>
+      <form
+        className='flex flex-col w-full max-w-prose justify-center'
+        onSubmit={handleOnSubmit}
+      >
+        <label className='text-lg pb-2 text-center' htmlFor='search-input'>
+          Generate a resume PDF from LinkedIn
+        </label>
 
-        <button
-          className='disabled:text-gray-400'
-          disabled={!inputValue}
-          type='submit'
-        >
-          <SearchIcon className='h-6 w-6 shrink-0 fill-current' />
-        </button>
-      </div>
-    </form>
+        <div className='flex px-4 w-full border shadow rounded-full dark:text-gray-800 dark:border-gray-700 dark:bg-gray-200 focus:ring-blue-500 focus:border-blue-500'>
+          <input
+            autoComplete='off'
+            className='outline-none w-full bg-transparent dark:text-gray-600 text-sm h-12'
+            id='search-input'
+            onChange={handleOnChange}
+            placeholder='Search LinkedIn by profile name'
+            type='text'
+            value={inputValue}
+          />
+
+          <button
+            className='disabled:text-gray-400'
+            disabled={!inputValue}
+            type='submit'
+          >
+            <SearchIcon className='h-6 w-6 shrink-0 fill-current' />
+          </button>
+        </div>
+      </form>
+    </div>
   )
 }

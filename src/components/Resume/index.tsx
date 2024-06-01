@@ -1,9 +1,9 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import Link from 'next/link'
 import { Page, View, Document } from '@react-pdf/renderer'
 import type { Profile, ProfileData } from 'types'
+import { SearchAgain } from 'components/SearchAgain'
 
 import { Education } from './Education'
 import { Experience } from './Experience'
@@ -19,7 +19,11 @@ const PDFViewer = dynamic(
   () => import('@react-pdf/renderer').then((mod) => mod.PDFViewer),
   {
     ssr: false,
-    loading: () => <p>Loading...</p>,
+    loading: () => (
+      <div className='flex flex-col items-center justify-center flex-1'>
+        <p>Loading PDF...</p>
+      </div>
+    ),
   },
 )
 
@@ -28,12 +32,8 @@ export const Resume = ({ data }: ResumeProps) => {
     data as ProfileData
 
   return (
-    <>
-      <header>
-        <Link className='text-blue-600' href='/'>
-          Search Again
-        </Link>
-      </header>
+    <div className='flex flex-col w-full'>
+      <SearchAgain />
 
       <PDFViewer style={styles.viewer}>
         <Document title={`${firstName} ${lastName}`}>
@@ -47,6 +47,6 @@ export const Resume = ({ data }: ResumeProps) => {
           </Page>
         </Document>
       </PDFViewer>
-    </>
+    </div>
   )
 }

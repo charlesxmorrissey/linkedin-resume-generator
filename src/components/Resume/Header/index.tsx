@@ -29,7 +29,9 @@ export const Header = ({ data }: HeaderProps) => {
         <Text style={{ ...styles.smallText, marginBottom: 8 }}>{headline}</Text>
       )}
 
-      <Text style={{ ...styles.smallText, marginBottom: 8 }}>{location}</Text>
+      {location && (
+        <Text style={{ ...styles.smallText, marginBottom: 8 }}>{location}</Text>
+      )}
 
       {summary && (
         <>
