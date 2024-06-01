@@ -8,30 +8,31 @@ export const styles = StyleSheet.create({
   },
 
   section: {
-    margin: 10,
-    padding: 10,
     flex: 1,
+    marginLeft: 10,
+    marginRight: 10,
+    padding: 20,
   },
 
   heading1Text: {
+    fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 2,
     marginTop: 8,
-    fontSize: 18,
   },
 
   heading2Text: {
+    fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 4,
     marginTop: 8,
-    fontSize: 16,
   },
 
   heading3Text: {
+    fontSize: 13,
     fontWeight: 'bold',
     marginBottom: 8,
     marginTop: 8,
-    fontSize: 13,
   },
 
   smallText: {
@@ -45,7 +46,14 @@ export const styles = StyleSheet.create({
   },
 
   viewer: {
-    width: '100%',
     height: '100vh',
+    width: '100%',
+  },
+
+  pageNumber: {
+    color: 'grey',
+    fontSize: 12,
+    marginBottom: 10,
+    textAlign: 'center',
   },
 })

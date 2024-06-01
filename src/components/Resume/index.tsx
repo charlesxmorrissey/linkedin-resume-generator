@@ -1,7 +1,7 @@
 'use client'
 
 import dynamic from 'next/dynamic'
-import { Page, View, Document } from '@react-pdf/renderer'
+import { Page, View, Document, Text } from '@react-pdf/renderer'
 import type { Profile, ProfileData } from 'types'
 import { SearchAgain } from 'components/SearchAgain'
 
@@ -40,10 +40,23 @@ export const Resume = ({ data }: ResumeProps) => {
           <Page style={styles.page}>
             <View style={styles.section}>
               <Header data={data} />
+
               <Experience positions={position} />
+
               <Education educations={educations} />
-              <SkillList skills={skills} />
+
+              <View break>
+                <SkillList skills={skills} />
+              </View>
             </View>
+
+            <Text
+              fixed
+              render={({ pageNumber, totalPages }) =>
+                `${pageNumber} / ${totalPages}`
+              }
+              style={styles.pageNumber}
+            />
           </Page>
         </Document>
       </PDFViewer>
