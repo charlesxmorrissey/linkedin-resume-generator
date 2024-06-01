@@ -1,9 +1,7 @@
 import results from 'mocks/index.json'
-import type { ProfileData } from 'types'
+import type { Profile } from 'types'
 
-export async function fetchLinkedInUser(
-  handle: string,
-): Promise<ProfileData | { error: string } | undefined> {
+export async function fetchLinkedInUser(handle: string): Promise<Profile> {
   try {
     // const response = await fetch(
     //   `https://linkedin-api8.p.rapidapi.com/?username=${handle}`,
@@ -19,7 +17,7 @@ export async function fetchLinkedInUser(
 
     // const result = await response.json()
     // console.log('result::', result)
-    const result: ProfileData =
+    const result =
       handle === 'charles-x-morrissey-b366976'
         ? results
         : { error: "This profile can't be accessed" }

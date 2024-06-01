@@ -3,7 +3,11 @@ import { Inter } from 'next/font/google'
 
 import './globals.css'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({
+  display: 'swap',
+  subsets: ['latin'],
+  variable: '--font-inter',
+})
 
 export const metadata: Metadata = {
   title: 'SimpleClosure',
@@ -17,9 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body className={inter.className}>
-        <main className='flex min-h-screen flex-col items-center justify-between p-8'>
-          <div className='w-full max-w-6xl items-center justify-between'>
+      <body className={`${inter.variable} antialiased`}>
+        <main className='flex min-h-screen flex-col items-center justify-center p-8'>
+          <div className='flex flex-col w-full max-w-6xl items-center justify-center'>
             {children}
           </div>
         </main>

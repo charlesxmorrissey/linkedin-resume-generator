@@ -28,10 +28,13 @@ export const SearchForm = () => {
   }
 
   return (
-    <form className='w-full' onSubmit={handleOnSubmit}>
-      <div className='flex px-4 py-3 w-full border h-12 shadow p-4 rounded-full dark:text-gray-800 dark:border-gray-700 dark:bg-gray-200'>
+    <form
+      className='flex w-full max-w-prose justify-center'
+      onSubmit={handleOnSubmit}
+    >
+      <div className='flex px-4 w-full border shadow rounded-full dark:text-gray-800 dark:border-gray-700 dark:bg-gray-200 focus:ring-blue-500 focus:border-blue-500'>
         <input
-          className='w-full outline-none bg-transparent text-gray-600 text-sm'
+          className='outline-none w-full bg-transparent dark:text-gray-600 text-sm  h-12'
           onChange={handleOnChange}
           placeholder='Search LinkedIn by profile name'
           type='text'
@@ -39,7 +42,7 @@ export const SearchForm = () => {
         />
 
         <button
-          className=' disabled:text-gray-400'
+          className='disabled:text-gray-400'
           disabled={!inputValue}
           type='submit'
         >

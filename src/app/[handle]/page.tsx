@@ -12,7 +12,9 @@ export default async function Page({ params }: { params: { handle: string } }) {
       <>
         <p>{data?.error ?? "This profile can't be accessed"}</p>
 
-        <Link href='/'>Search</Link>
+        <Link className='text-blue-600' href='/'>
+          Search Again
+        </Link>
       </>
     )
   }

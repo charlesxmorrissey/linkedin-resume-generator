@@ -9,28 +9,26 @@ interface Languages {
   proficiency: string
 }
 
-interface Educations {
+export interface EmploymentDate {
+  year?: number
+  month?: number
+  day?: number
+}
+
+export interface Educations {
   activities: string
   degree: string
   description: string
-  end: {
-    year: number
-    month: number
-    day: number
-  }
+  end?: EmploymentDate
   fieldOfStudy: string
   grade: string
   schoolId: string
   schoolName: string
-  start: {
-    year: number
-    month: number
-    day: number
-  }
+  start?: EmploymentDate
   url: string
 }
 
-interface Position {
+export interface Position {
   companyIndustry: string
   companyLogo: string
   companyName: string
@@ -39,15 +37,15 @@ interface Position {
   companyUsername: string
   description: string
   employmentType: string
-  end: { year: number; month: number; day: number }
+  end?: EmploymentDate
   location: string
   multiLocaleCompanyName: { en_US?: string } | null
   multiLocaleTitle: { en_US?: string } | null
-  start: { year: number; month: number; day: number }
+  start?: EmploymentDate
   title: string
 }
 
-interface Skills {
+export interface Skills {
   endorsementsCount?: number
   name: string
   passedSkillAssessment: boolean
@@ -59,7 +57,7 @@ export interface ProfileData {
   firstName: string
   educations: Educations[]
   fullPositions?: Position[]
-  geo?: {
+  geo: {
     country: string
     city: string
     full: string
@@ -76,3 +74,5 @@ export interface ProfileData {
   urn: string
   username: string
 }
+
+export type Profile = ProfileData | { error: string } | undefined
