@@ -1,4 +1,4 @@
-import { Link, Text } from '@react-pdf/renderer'
+import { Link, Text, View } from '@react-pdf/renderer'
 import { useMemo } from 'react'
 import type { Position } from 'types'
 
@@ -18,7 +18,7 @@ export const JobItem = ({ data }: JobItemProps) => {
   const date = useMemo(() => formatDate(start, end), [end, start])
 
   return (
-    <>
+    <View style={{ marginBottom: 8 }}>
       <Text style={{ ...styles.heading3Text, marginBottom: 2 }}>{title}</Text>
 
       <ConditionalWrapper
@@ -37,6 +37,6 @@ export const JobItem = ({ data }: JobItemProps) => {
       <Text style={{ ...styles.smallText, marginBottom: 2 }}>{location}</Text>
 
       <Text style={styles.smallText}>{description}</Text>
-    </>
+    </View>
   )
 }

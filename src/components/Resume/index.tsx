@@ -43,7 +43,9 @@ export const Resume = ({ data }: ResumeProps) => {
 
               <Experience positions={position} />
 
-              <Education educations={educations} />
+              <View break>
+                <Education educations={educations} />
+              </View>
 
               <View break>
                 <SkillList skills={skills} />
