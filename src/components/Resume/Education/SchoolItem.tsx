@@ -1,4 +1,5 @@
 import { Text } from '@react-pdf/renderer'
+import { useMemo } from 'react'
 import type { Educations } from 'types'
 import { formatDate } from 'utils'
 
@@ -11,15 +12,17 @@ interface SchoolItemProps {
 export const SchoolItem = ({ data }: SchoolItemProps) => {
   const { degree, end, fieldOfStudy, schoolName, start } = data
 
+  const date = useMemo(() => formatDate(start, end), [end, start])
+
   return (
     <>
       <Text style={{ ...styles.heading3Text, marginBottom: 2 }}>
         {schoolName}
       </Text>
 
-      <Text style={{ ...styles.smallText, marginBottom: 2 }}>
-        {formatDate(start, end)}
-      </Text>
+      {date && (
+        <Text style={{ ...styles.smallText, marginBottom: 2 }}>{date}</Text>
+      )}
 
       {fieldOfStudy && (
         <Text style={{ ...styles.smallText, marginBottom: 2 }}>
