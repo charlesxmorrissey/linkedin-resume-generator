@@ -1,4 +1,42 @@
+import Redis from 'ioredis'
 import type { Profile } from 'types'
+
+export async function fetchLinkedInProfile(
+  handle: string,
+  redis: Redis | null,
+) {
+  try {
+    if (redis) {
+      let cachedData: any = await redis.get('linkedInProfile')
+
+      if (cachedData) {
+        const data = JSON.parse(cachedData)
+
+        if (data.length > 0) {
+          return data
+        }
+      }
+
+      const freshData = await fetchLinkedInUser(handle)
+
+      await redis.set(
+        'linkedInProfile',
+        JSON.stringify(freshData),
+        'EX',
+        1 * 60 * 60,
+      )
+
+      return freshData
+    }
+  } catch (error) {
+    console.error(error)
+
+    return {
+      source: 'error',
+      data: [],
+    }
+  }
+}
 
 export async function fetchLinkedInUser(handle: string): Promise<Profile> {
   try {
