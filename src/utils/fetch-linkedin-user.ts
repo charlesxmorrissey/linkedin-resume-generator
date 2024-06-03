@@ -43,7 +43,6 @@ export async function fetchLinkedInUser(handle: string): Promise<Profile> {
     const response = await fetch(
       `https://linkedin-api8.p.rapidapi.com/?username=${handle}`,
       {
-        cache: 'no-store',
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
           'x-rapidapi-host': 'linkedin-api8.p.rapidapi.com',
