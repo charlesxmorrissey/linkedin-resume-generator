@@ -4,10 +4,8 @@ import { SearchAgain } from 'components/SearchAgain'
 import { fetchLinkedInProfile } from 'utils'
 
 export default async function Page({ params }: { params: { handle: string } }) {
-  const redis = process.env.REDIS_URL ? new Redis(process.env.REDIS_URL) : null
-
   const { handle } = params
-
+  const redis = process.env.REDIS_URL ? new Redis(process.env.REDIS_URL) : null
   const data = await fetchLinkedInProfile(handle, redis)
 
   if (data?.error) {

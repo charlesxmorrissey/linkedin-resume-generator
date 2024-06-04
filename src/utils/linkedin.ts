@@ -1,13 +1,25 @@
 import Redis from 'ioredis'
-import type { Profile } from 'types'
+import type { Profile, ProfileData } from 'types'
+
+const reportError = (error: unknown) => {
+  let message
+
+  if (error instanceof Error) {
+    message = error.message
+  } else {
+    message = String(error)
+  }
+
+  console.error('error fetching profile', message)
+}
 
 export async function fetchLinkedInProfile(
   handle: string,
   redis: Redis | null,
-) {
+): Promise<Profile> {
   try {
     if (redis) {
-      let cachedData: any = await redis.get('linkedInProfile')
+      let cachedData: string | null = await redis.get('linkedInProfile')
 
       if (cachedData) {
         const data = JSON.parse(cachedData)
@@ -29,12 +41,7 @@ export async function fetchLinkedInProfile(
       return freshData
     }
   } catch (error) {
-    console.error(error)
-
-    return {
-      source: 'error',
-      data: [],
-    }
+    reportError(error)
   }
 }
 
@@ -55,14 +62,6 @@ export async function fetchLinkedInUser(handle: string): Promise<Profile> {
 
     return result
   } catch (error) {
-    let message
-
-    if (error instanceof Error) {
-      message = error.message
-    } else {
-      message = String(error)
-    }
-
-    console.error('error fetching profile', message)
+    reportError(error)
   }
 }
