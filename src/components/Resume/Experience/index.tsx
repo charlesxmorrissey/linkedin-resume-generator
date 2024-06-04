@@ -12,9 +12,8 @@ export const Experience = ({ positions }: ExperienceProps) => (
   <>
     <Text style={{ ...styles.heading2Text, marginTop: 16 }}>Experience</Text>
 
-    {!!positions?.length &&
-      positions.map((position, index) => (
-        <JobItem key={`position-${index}`} data={position} />
-      ))}
+    {positions.map((position, index) => (
+      <JobItem key={`position-${index}`} data={position} />
+    ))}
   </>
 )
