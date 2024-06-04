@@ -41,15 +41,19 @@ export const Resume = ({ data }: ResumeProps) => {
             <View style={styles.section}>
               <Header data={data} />
 
-              <Experience positions={position} />
+              {!!position?.length && <Experience positions={position} />}
 
-              <View break>
-                <Education educations={educations} />
-              </View>
+              {!!educations?.length && (
+                <View break>
+                  <Education educations={educations} />
+                </View>
+              )}
 
-              <View break>
-                <SkillList skills={skills} />
-              </View>
+              {!!skills?.length && (
+                <View break>
+                  <SkillList skills={skills} />
+                </View>
+              )}
             </View>
 
             <Text
