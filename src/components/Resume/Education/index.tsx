@@ -5,7 +5,7 @@ import { SchoolItem } from './SchoolItem'
 import { styles } from '../Resume.styles'
 
 interface EducationProps {
-  educations: Educations[] | undefined
+  educations: Educations[]
 }
 
 export const Education = ({ educations }: EducationProps) => (

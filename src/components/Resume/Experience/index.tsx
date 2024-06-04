@@ -5,7 +5,7 @@ import { JobItem } from './JobItem'
 import { styles } from '../Resume.styles'
 
 interface ExperienceProps {
-  positions: Position[] | undefined
+  positions: Position[]
 }
 
 export const Experience = ({ positions }: ExperienceProps) => (
