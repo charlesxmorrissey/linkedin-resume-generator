@@ -1,2 +1,2 @@
-export { fetchLinkedInUser } from './fetch-linkedin-user'
+export { fetchLinkedInProfile, fetchLinkedInUser } from './linkedin'
 export { formatDate } from './format-date'

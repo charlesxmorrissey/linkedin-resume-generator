@@ -1,10 +1,12 @@
+import Redis from 'ioredis'
 import { Resume } from 'components/Resume'
 import { SearchAgain } from 'components/SearchAgain'
-import { fetchLinkedInUser } from 'utils'
+import { fetchLinkedInProfile } from 'utils'
 
 export default async function Page({ params }: { params: { handle: string } }) {
   const { handle } = params
-  const data = await fetchLinkedInUser(handle)
+  const redis = process.env.REDIS_URL ? new Redis(process.env.REDIS_URL) : null
+  const data = await fetchLinkedInProfile(handle, redis)
 
   if (data?.error) {
     return (
