@@ -11,6 +11,24 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with
 Running `nvm use` will automatically switch you to the version of node being
 used by this project. This value is saved in the `.nvmrc` file.
 
+## Environment Variables
+
+Copy the contents of `.example.env` into a new `.env.local` file.
+
+```bash
+cp .example.env .env.local
+```
+
+`.env.local` contains two variables that need to be set before running locally.
+
+```
+# Create an account here: https://rapidapi.com/auth/sign-up
+RAPIDAPI_KEY=<YOUR_API_KEY_HERE>
+
+# Create an account here: https://console.upstash.com/login
+REDIS_URL=<YOUR_URL_KEY_HERE>
+```
+
 ## Getting Started
 
 First, install the dependencies:
