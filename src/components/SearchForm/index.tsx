@@ -49,7 +49,7 @@ export const SearchForm = () => {
           />
 
           <button
-            className='disabled:text-gray-400'
+            className='disabled:text-gray-400 hover:text-blue-500 focus:text-blue-500 outline-none'
             disabled={!inputValue}
             type='submit'
           >
