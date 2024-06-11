@@ -19,21 +19,14 @@ export const SearchForm = () => {
       currentTarget: { value },
     } = e
 
-    // Declare a variable that returns a error message if there is one.
     const error = validateUrlFromInput(value)
 
-    // Check if an error exists and set the `formError` state.
-    // if (value.includes('http')) {
     if (error) {
-      // setFormError('Please enter only a LinkedIn username.')
       setFormError(error)
-
-      // If no error exists, set the `formError` state to empty.
     } else {
       setFormError(null)
     }
 
-    // Set the input value state.
     setInputValue(value)
   }
 
@@ -41,10 +34,8 @@ export const SearchForm = () => {
     e.preventDefault()
 
     if (inputValue) {
-      // Set a variable to hold the input value state, trim, and remove slashes.
       const urlParam = sanitizeStr(inputValue)
 
-      // Set the `formError` state to empty.
       setFormError(null)
 
       router.push(`/${urlParam}`)
