@@ -4,9 +4,14 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 import SearchIcon from 'assets/icons/search.svg'
+import { validateUrlFromInput } from 'utils'
+
+const sanitizeStr = (val: string): string => val.trim().replace(/\//g, '')
 
 export const SearchForm = () => {
   const router = useRouter()
+
+  const [formError, setFormError] = useState<string | null>(null)
   const [inputValue, setInputValue] = useState('')
 
   const handleOnChange = (e: React.FormEvent<HTMLInputElement>) => {
@@ -14,15 +19,20 @@ export const SearchForm = () => {
       currentTarget: { value },
     } = e
 
+    const error = validateUrlFromInput(value)
+
+    setFormError(error ?? null)
     setInputValue(value)
   }
 
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    const urlParam = inputValue.trim()
-
     if (inputValue) {
+      const urlParam = sanitizeStr(inputValue)
+
+      setFormError(null)
+
       router.push(`/${urlParam}`)
     }
   }
@@ -50,11 +60,15 @@ export const SearchForm = () => {
 
           <button
             className='disabled:text-gray-400 hover:text-blue-500 focus:text-blue-500 outline-none'
-            disabled={!inputValue}
+            disabled={!inputValue || !!formError}
             type='submit'
           >
             <SearchIcon className='h-6 w-6 shrink-0 fill-current' />
           </button>
+        </div>
+
+        <div className='h-6 text-red-600 mt-2 ml-4'>
+          {formError && formError}
         </div>
       </form>
     </div>

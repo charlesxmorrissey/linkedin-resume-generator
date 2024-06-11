@@ -1,5 +1,6 @@
 import Redis from 'ioredis'
-import type { Profile, ProfileData } from 'types'
+// import profileData from 'mocks'
+import type { Profile } from 'types'
 
 const reportError = (error: unknown) => {
   let message
@@ -13,9 +14,31 @@ const reportError = (error: unknown) => {
   console.error('error fetching profile', message)
 }
 
+const fetchLinkedInUser = async (handle: string): Promise<Profile> => {
+  try {
+    const response = await fetch(
+      `https://linkedin-api8.p.rapidapi.com/?username=${handle}`,
+      {
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+          'x-rapidapi-host': 'linkedin-api8.p.rapidapi.com',
+          'x-rapidapi-key': process.env.RAPIDAPI_KEY as string,
+        },
+      },
+    )
+
+    const result = await response.json()
+    // const result = profileData
+
+    return result
+  } catch (error) {
+    reportError(error)
+  }
+}
+
 export async function fetchLinkedInProfile(
   handle: string,
-  redis: Redis | null,
+  redis?: Redis | null,
 ): Promise<Profile> {
   try {
     if (redis) {
@@ -40,27 +63,6 @@ export async function fetchLinkedInProfile(
 
       return freshData
     }
-  } catch (error) {
-    reportError(error)
-  }
-}
-
-export async function fetchLinkedInUser(handle: string): Promise<Profile> {
-  try {
-    const response = await fetch(
-      `https://linkedin-api8.p.rapidapi.com/?username=${handle}`,
-      {
-        headers: {
-          'Content-type': 'application/json; charset=UTF-8',
-          'x-rapidapi-host': 'linkedin-api8.p.rapidapi.com',
-          'x-rapidapi-key': process.env.RAPIDAPI_KEY as string,
-        },
-      },
-    )
-
-    const result = await response.json()
-
-    return result
   } catch (error) {
     reportError(error)
   }
