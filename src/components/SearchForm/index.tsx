@@ -21,12 +21,7 @@ export const SearchForm = () => {
 
     const error = validateUrlFromInput(value)
 
-    if (error) {
-      setFormError(error)
-    } else {
-      setFormError(null)
-    }
-
+    setFormError(error ?? null)
     setInputValue(value)
   }
 
