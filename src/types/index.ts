@@ -67,6 +67,7 @@ export interface ProfileData {
   isOpenToWork: boolean
   languages?: Languages[]
   lastName: string
+  message?: string
   position: Position[]
   profilePicture: string
   skills: Skills[]
@@ -75,4 +76,7 @@ export interface ProfileData {
   username: string
 }
 
-export type Profile = ProfileData | { error: string } | undefined
+export type Profile =
+  | ProfileData
+  | { error: string; message: string }
+  | undefined
